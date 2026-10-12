@@ -1,0 +1,2182 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  /* Official avia.tutu.ru / Kite tokens (sampled) */
+  --tutu-brand-deep: #0d0b68;
+  --tutu-brand: #7028eb;
+  --tutu-brand-text: #6618e0;
+  --tutu-brand-content: #5f17c5;
+  --tutu-brand-soft: #f3f0ff;
+  --tutu-brand-border: #8a56f4;
+  --tutu-page: #f5f5f9;
+  --tutu-text: #252a40;
+  --tutu-text-secondary: rgba(37, 42, 64, 0.8);
+  --tutu-promo: #f37021;
+  --tutu-white: #ffffff;
+  --tutu-shadow: 0px 8px 32px 0px rgba(85, 90, 122, 0.32);
+  --tutu-radius: 12px;
+  --tutu-radius-lg: 16px;
+}
+
+html,
+body {
+  background: var(--tutu-page);
+  color: var(--tutu-text);
+}
+
+/* Фикс для логотипа в Footer — должен быть белым на тёмном фоне */
+footer img[alt=""],
+footer > div > img {
+  filter: brightness(0) invert(1);
+}
+
+/* Header */
+.landing-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 52px;
+  padding: 10px 0;
+}
+
+.landing-header__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.landing-header__logo {
+  display: block;
+  width: 132px;
+  height: 36px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.landing-header__product {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.landing-hero {
+  position: relative;
+  overflow: hidden !important;
+  background: var(--tutu-brand-deep) !important;
+}
+
+.landing-hero.kite-panel,
+.landing-hero[class*='kite-panel'] {
+  background: var(--tutu-brand-deep) !important;
+  overflow: hidden !important;
+}
+
+.landing-hero--city-open,
+.landing-hero--city-open.kite-panel,
+.landing-hero--city-open[class*='kite-panel'] {
+  overflow: visible !important;
+  z-index: 20;
+}
+
+.landing-hero__stage {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.landing-hero--city-open .landing-hero__stage {
+  overflow: visible;
+}
+
+/* Овал справа за формой — как на tutu.ru, наши горы + скидка */
+.landing-hero__visual {
+  position: absolute;
+  top: -56px;
+  right: -64px;
+  z-index: 0;
+  width: min(48vw, 580px);
+  height: min(80vh, 700px);
+  pointer-events: none;
+}
+
+.landing-hero__oval {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  transform: rotate(-15deg);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+.landing-hero__oval::before {
+  content: '';
+  position: absolute;
+  inset: -32%;
+  background: url('/assets/hero.jpg') 36% 36% / cover no-repeat;
+  transform: rotate(15deg) scale(1.08);
+}
+
+.landing-hero__oval img {
+  display: none;
+}
+
+/* Слот совпадает с овалом: фото сзади, таймер выше и кликабелен */
+.landing-hero__deal-slot {
+  position: absolute;
+  top: -56px;
+  right: -64px;
+  z-index: 5;
+  width: min(48vw, 580px);
+  height: min(80vh, 700px);
+  pointer-events: none;
+}
+
+.landing-hero__deal {
+  position: absolute;
+  left: 2%;
+  top: 48%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  max-width: 176px;
+  padding: 11px 13px 11px 15px;
+  border-radius: 14px;
+  background: var(--tutu-promo);
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  pointer-events: auto;
+  box-shadow: 0 12px 32px rgba(13, 11, 104, 0.32);
+  transform: rotate(-9deg);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.landing-hero__deal:hover {
+  color: #fff;
+  box-shadow: 0 14px 36px rgba(13, 11, 104, 0.4);
+  transform: rotate(-9deg) scale(1.03);
+}
+
+.landing-hero__deal:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.landing-hero__deal-text {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.landing-hero__deal-timer {
+  font-variant-numeric: tabular-nums;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+.landing-hero__container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  min-height: clamp(400px, 46vh, 500px);
+  padding-top: 12px;
+  padding-bottom: 32px;
+}
+
+.landing-hero--mixed .landing-hero__container {
+  min-height: clamp(380px, 44vh, 480px);
+  padding-bottom: 48px;
+}
+
+/* Следующий блок — крупное скругление сверху */
+.landing-section-rounded {
+  position: relative;
+  z-index: 3;
+  margin-top: -20px;
+  padding-top: 12px;
+  border-top-left-radius: 40px !important;
+  border-top-right-radius: 40px !important;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .landing-hero__visual {
+    top: -20px;
+    right: -40px;
+    width: min(70vw, 320px);
+    height: min(52vh, 380px);
+    opacity: 0.55;
+  }
+
+  .landing-hero__deal-slot {
+    top: -20px;
+    right: -40px;
+    width: min(70vw, 320px);
+    height: min(52vh, 380px);
+  }
+
+  .landing-hero__deal {
+    left: 0;
+    top: 42%;
+    max-width: 140px;
+    padding: 8px 10px;
+  }
+
+  .landing-hero__deal-text {
+    font-size: 11px;
+  }
+
+  .landing-hero__deal-timer {
+    font-size: 18px;
+  }
+
+  .landing-hero__container {
+    min-height: 0;
+  }
+
+  .landing-section-rounded {
+    margin-top: -20px;
+    border-top-left-radius: 28px !important;
+    border-top-right-radius: 28px !important;
+  }
+}
+
+
+.landing-hero__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: clamp(20px, 3vh, 40px);
+  margin-bottom: 28px;
+  padding-bottom: 0;
+  width: min(100%, 720px);
+  max-width: calc(100% - min(28vw, 320px));
+}
+
+.landing-hero__lead {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  width: 100%;
+}
+
+.landing-hero__title {
+  color: #fff !important;
+  font-size: clamp(48px, 6.2vw, 72px) !important;
+  line-height: 0.92 !important;
+  letter-spacing: 0.01em;
+  margin: 0 0 12px !important;
+  transition: opacity 0.15s ease;
+}
+
+.landing-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 12px !important;
+  padding: 8px 16px;
+  border-radius: 10px;
+  background: var(--tutu-promo);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+  font-style: italic;
+  line-height: 1.1;
+  transform: rotate(-2deg);
+}
+
+.landing-hero__subtitle {
+  color: hsla(0, 0%, 100%, 0.9) !important;
+  max-width: 40ch;
+  margin: 0 0 14px !important;
+  font-size: 18px !important;
+  line-height: 1.35 !important;
+}
+
+.landing-hero__cta {
+  margin: 0 0 14px !important;
+}
+
+.landing-trust {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  width: max-content;
+  max-width: 100%;
+  margin: 0;
+}
+
+.landing-trust__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: auto;
+  min-height: 32px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 500;
+  text-align: left;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+@media (max-width: 1100px) {
+  .landing-trust {
+    flex-wrap: wrap;
+  }
+}
+
+.landing-trust__item > span {
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+/* Секция с промо — не клипать вынесенный таймер */
+.landing-promo-section,
+.landing-promo-section.kite-panel,
+.landing-promo-section[class*='kite-panel'],
+.landing-promo-section__container {
+  overflow: visible !important;
+}
+
+/* Промокод после маршрутов */
+.landing-promo-code {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.95fr);
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 44px;
+  overflow: visible;
+  border-radius: 28px;
+  background: #eef0f5;
+  min-height: 200px;
+  box-sizing: border-box;
+  scroll-margin-top: 48px;
+}
+
+.landing-promo-code--orange {
+  background: linear-gradient(125deg, #ff9a4a 0%, #f37021 48%, #e85a10 100%);
+  box-shadow: 0 12px 32px rgba(243, 112, 33, 0.28);
+}
+
+.landing-promo-code__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 32px 40px;
+  border-radius: 28px 0 0 28px;
+  overflow: hidden;
+}
+
+.landing-promo-code__deal {
+  position: absolute;
+  left: -10px;
+  top: -34px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  max-width: 176px;
+  padding: 11px 13px 11px 15px;
+  border-radius: 14px;
+  background: var(--tutu-brand-deep);
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(13, 11, 104, 0.28);
+  transform: rotate(-9deg);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.landing-promo-code__deal-text {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.landing-promo-code__deal-timer {
+  font-variant-numeric: tabular-nums;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+.landing-promo-code__title {
+  margin: 0 !important;
+  color: var(--tutu-text) !important;
+  font-size: clamp(22px, 2.4vw, 28px) !important;
+  font-weight: 800 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.02em;
+}
+
+.landing-promo-code__subtitle {
+  margin: 0 !important;
+  max-width: 36ch;
+  color: var(--tutu-text-secondary) !important;
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+}
+
+.landing-promo-code--orange .landing-promo-code__subtitle {
+  color: #fff !important;
+}
+
+.landing-promo-code__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  height: 44px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--tutu-brand);
+  color: #fff;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.landing-promo-code--orange .landing-promo-code__btn {
+  background: #fff;
+  color: #c44e0d;
+}
+
+.landing-promo-code--orange .landing-promo-code__btn:hover {
+  background: #fff7f0;
+  color: #a9410a;
+}
+
+.landing-promo-code__btn:hover {
+  background: var(--tutu-brand-text);
+}
+
+.landing-promo-code__btn:active {
+  transform: scale(0.98);
+}
+
+.landing-promo-code__visual {
+  position: relative;
+  min-height: 200px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0 28px 28px 0;
+}
+
+.landing-promo-code__visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+/* Карусель популярных направлений — фиолетовая плашка */
+.landing-dest-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  margin: 0 0 16px;
+  border-radius: 999px;
+  background: #ebeaf2;
+}
+
+.landing-dest-switch__btn {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  cursor: pointer;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: transparent;
+  color: #5b5872;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.landing-dest-switch__btn--active {
+  background: #fff;
+  color: #1c1840;
+  box-shadow: 0 1px 3px rgba(28, 24, 64, 0.12);
+}
+
+.landing-dest-shell {
+  padding: 28px 28px 24px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, #8b6cf6 0%, #6f4de8 48%, #5a3ad4 100%);
+  box-shadow: 0 18px 40px rgba(90, 58, 212, 0.22);
+}
+
+.landing-dest-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.landing-dest-head__copy {
+  min-width: 0;
+}
+
+.landing-dest-head__title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+}
+
+.landing-dest-head__title {
+  color: #fff !important;
+  margin: 0 !important;
+}
+
+.landing-dest-head__subtitle {
+  color: rgba(255, 255, 255, 0.88) !important;
+  margin-top: 10px !important;
+  max-width: 52ch;
+}
+
+.landing-dest-all {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 12px 18px;
+  border-radius: 16px;
+  background: #fff;
+  color: #1c1840;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.landing-dest-carousel {
+  position: relative;
+}
+
+.landing-dest-track {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 2px 4px 6px;
+  margin: 0 -4px;
+  scrollbar-width: none;
+}
+
+.landing-dest-track::-webkit-scrollbar {
+  display: none;
+}
+
+.landing-dest-card {
+  flex: 0 0 min(248px, 70vw);
+  scroll-snap-align: start;
+  appearance: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #fff;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(28, 24, 64, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.landing-dest-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(28, 24, 64, 0.18);
+}
+
+.landing-dest-card__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  background: #d9d8e3;
+}
+
+.landing-dest-card__media > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.landing-dest-card:hover .landing-dest-card__media > img {
+  transform: scale(1.03);
+}
+
+.landing-dest-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px 16px;
+}
+
+.landing-dest-card__route {
+  color: #1c1840;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.landing-dest-card__prices {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.landing-dest-card__price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.landing-dest-card__price {
+  color: #1c1840;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.landing-dest-card__discount {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--tutu-promo);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.landing-dest-card__old {
+  color: #9a97ab;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: line-through;
+}
+
+.landing-dest-card__kzt {
+  color: #6b6880;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.landing-dest-nav {
+  position: absolute;
+  top: 46%;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #1c1840;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(28, 24, 64, 0.18);
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+}
+
+.landing-dest-nav--prev {
+  left: -6px;
+}
+
+.landing-dest-nav--next {
+  right: -6px;
+}
+
+/* FAQ — как на рефе: мягкие строки + фиолетовый шеврон */
+.landing-faq {
+  width: 100%;
+}
+
+.landing-faq__title {
+  margin: 0 0 28px !important;
+  color: var(--tutu-text) !important;
+}
+
+.landing-faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.landing-faq__item {
+  border-radius: 18px;
+  background: #eceaf3;
+  overflow: hidden;
+  transition: background 0.15s ease;
+}
+
+.landing-faq__item--open {
+  background: #e7e4f0;
+}
+
+.landing-faq__question {
+  appearance: none;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0;
+  padding: 18px 20px;
+  border: 0;
+  background: transparent;
+  color: var(--tutu-text);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-align: left;
+  cursor: pointer;
+}
+
+.landing-faq__chevron {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  color: var(--tutu-brand);
+  transition: transform 0.2s ease;
+}
+
+.landing-faq__item--open .landing-faq__chevron {
+  transform: rotate(180deg);
+}
+
+.landing-faq__answer {
+  padding: 0 20px 18px;
+  color: var(--tutu-text-secondary);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+@media (max-width: 640px) {
+  .landing-faq__title {
+    margin-bottom: 20px !important;
+  }
+
+  .landing-faq__question {
+    padding: 16px;
+    font-size: 15px;
+  }
+
+  .landing-faq__answer {
+    padding: 0 16px 16px;
+    font-size: 14px;
+  }
+}
+
+/* Отели — бесцветный блок, бирюза только на виджетах */
+.landing-hotels-shell {
+  --hotels-teal: #1aa8a8;
+  --hotels-teal-deep: #0f8f96;
+  --hotels-teal-soft: #e7f7f7;
+  position: relative;
+  margin-top: 36px;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.landing-hotels-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 22px;
+  padding-left: 0;
+}
+
+.landing-hotels-head__copy {
+  min-width: 0;
+}
+
+.landing-hotels-head__eyebrow {
+  margin: 0 0 8px !important;
+  color: var(--hotels-teal-deep) !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700 !important;
+}
+
+.landing-hotels-head__title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+}
+
+.landing-hotels-head__title {
+  color: var(--tutu-text) !important;
+  margin: 0 !important;
+}
+
+.landing-hotels-head__subtitle {
+  margin: 10px 0 0 !important;
+  max-width: 48ch;
+  color: var(--tutu-text-secondary) !important;
+}
+
+.landing-hotels-head__discount {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--tutu-promo);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.landing-hotels-head__code {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 7px 14px;
+  border: 1.5px solid var(--hotels-teal);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--hotels-teal-deep);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.landing-hotels-head__code:hover {
+  background: var(--hotels-teal-soft);
+}
+
+.landing-hotels-head__code:active {
+  transform: scale(0.98);
+}
+
+.landing-hotels-all {
+  appearance: none;
+  border: 1.5px solid var(--hotels-teal);
+  margin: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 11px 18px;
+  border-radius: 16px;
+  background: transparent;
+  color: var(--hotels-teal-deep);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.landing-hotels-all:hover {
+  background: var(--hotels-teal);
+  color: #fff;
+}
+
+.landing-hotels-carousel {
+  position: relative;
+  padding-left: 0;
+}
+
+.landing-hotels-track {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 2px 4px 10px;
+  margin: 0 -4px;
+  scrollbar-width: none;
+}
+
+.landing-hotels-track::-webkit-scrollbar {
+  display: none;
+}
+
+.landing-hotel-card {
+  flex: 0 0 min(280px, 74vw);
+  scroll-snap-align: start;
+  overflow: hidden;
+  border-radius: 24px;
+  background: linear-gradient(160deg, #2ec4b6 0%, #1aa8a8 52%, #0f8f96 100%);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 28px rgba(15, 143, 150, 0.22);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.landing-hotel-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(15, 143, 150, 0.28);
+}
+
+.landing-hotel-card__media {
+  position: relative;
+  aspect-ratio: 16 / 12;
+  overflow: hidden;
+  background: #0f6f75;
+}
+
+.landing-hotel-card__media > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.landing-hotel-card:hover .landing-hotel-card__media > img {
+  transform: scale(1.03);
+}
+
+.landing-hotel-card__city {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #0f4f55;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  box-shadow: 0 4px 12px rgba(15, 79, 85, 0.14);
+}
+
+.landing-hotel-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 16px 18px 18px;
+  color: #fff;
+}
+
+.landing-hotel-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.landing-hotel-card__rating {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: #2fbf6b;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.landing-hotel-card__reviews {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.landing-hotel-card__name {
+  margin: 0;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.landing-hotel-card__prices {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.landing-hotel-card__price-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.landing-hotel-card__price {
+  color: #fff;
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.landing-hotel-card__old {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: line-through;
+}
+
+.landing-hotel-card__discount {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--tutu-promo);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.landing-hotel-card__kzt {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.landing-hotels-nav {
+  position: absolute;
+  top: 46%;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid var(--hotels-teal);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--hotels-teal-deep);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(15, 79, 85, 0.12);
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+}
+
+.landing-hotels-nav--prev {
+  left: -6px;
+}
+
+.landing-hotels-nav--next {
+  right: -6px;
+}
+
+/* Отзывы — тёмно-синяя плашка между отелями и промо */
+.landing-voice-shell {
+  margin-top: 36px;
+  margin-bottom: 20px;
+  padding: 28px 28px 24px;
+  border-radius: 32px;
+  background: var(--tutu-brand-deep);
+  box-shadow: 0 18px 40px rgba(13, 11, 104, 0.22);
+}
+
+.landing-voice-shell + .landing-promo-code {
+  margin-top: 64px;
+}
+
+.landing-voice-shell__title {
+  margin: 0 0 22px !important;
+  color: #fff !important;
+  max-width: 28ch;
+}
+
+.landing-voice-carousel {
+  position: relative;
+}
+
+.landing-voice-track {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 2px 4px 6px;
+  margin: 0 -4px;
+  scrollbar-width: none;
+}
+
+.landing-voice-track::-webkit-scrollbar {
+  display: none;
+}
+
+.landing-voice-card {
+  flex: 0 0 min(300px, 78vw);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 220px;
+  padding: 22px 20px 18px;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(13, 11, 104, 0.14);
+  box-sizing: border-box;
+}
+
+.landing-voice-card__stars {
+  color: var(--tutu-promo);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.landing-voice-card__text {
+  margin: 0;
+  flex: 1;
+  color: var(--tutu-text);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.landing-voice-card__footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.landing-voice-card__avatar {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+}
+
+.landing-voice-card__avatar--orange {
+  background: var(--tutu-promo);
+}
+
+.landing-voice-card__avatar--green {
+  background: #2fbf6b;
+}
+
+.landing-voice-card__avatar--purple {
+  background: #a78bfa;
+}
+
+.landing-voice-card__avatar--teal {
+  background: #1aa8a8;
+}
+
+.landing-voice-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.landing-voice-card__name {
+  color: var(--tutu-text);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.landing-voice-card__tag {
+  color: var(--tutu-text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.landing-voice-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #1c1840;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(13, 11, 104, 0.2);
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+}
+
+.landing-voice-nav--prev {
+  left: -8px;
+}
+
+.landing-voice-nav--next {
+  right: -8px;
+}
+
+/* За что любят Туту — тот же серый фон секции, белые виджеты */
+.landing-love {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+.landing-love__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+  min-height: 220px;
+  padding: 20px 18px 16px;
+  border-radius: 20px;
+  background: #fff;
+  border: 3px solid var(--tutu-brand-deep);
+  color: var(--tutu-text);
+  box-sizing: border-box;
+}
+
+.landing-love__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.landing-love__card-title {
+  margin: 0;
+  color: var(--tutu-text);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.landing-love__card-text {
+  margin: 0;
+  color: var(--tutu-text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.landing-love__visual {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  min-height: 72px;
+  color: var(--tutu-promo) !important;
+}
+
+.landing-love__visual,
+.landing-love__visual *,
+.landing-love__visual i,
+.landing-love__visual [class*='oim-'] {
+  color: var(--tutu-promo) !important;
+}
+
+@media (max-width: 1100px) {
+  .landing-love {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .landing-love {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-love {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1100px) {
+  .landing-trust {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .landing-promo-code {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    margin-top: 40px;
+  }
+
+  .landing-promo-code__copy {
+    border-radius: 28px 28px 0 0;
+  }
+
+  .landing-promo-code__visual {
+    min-height: 200px;
+    border-radius: 0 0 28px 28px;
+  }
+
+  .landing-promo-code__deal {
+    left: 12px;
+    top: -28px;
+    max-width: 150px;
+    padding: 9px 11px;
+  }
+
+  .landing-promo-code__deal-text {
+    font-size: 12px;
+  }
+
+  .landing-promo-code__deal-timer {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .landing-trust {
+    max-width: 100%;
+  }
+
+  .landing-trust__item {
+    white-space: normal;
+  }
+
+  .landing-dest-switch {
+    width: 100%;
+  }
+
+  .landing-dest-switch__btn {
+    flex: 1;
+    text-align: center;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .landing-dest-shell {
+    padding: 20px 16px 18px;
+    border-radius: 24px;
+  }
+
+  .landing-dest-head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .landing-dest-all {
+    align-self: flex-start;
+  }
+
+  .landing-dest-nav {
+    display: none;
+  }
+
+  .landing-hotels-shell {
+    padding: 0;
+  }
+
+  .landing-hotels-head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding-left: 0;
+  }
+
+  .landing-hotels-carousel {
+    padding-left: 0;
+  }
+
+  .landing-hotels-all {
+    align-self: flex-start;
+  }
+
+  .landing-hotels-nav {
+    display: none;
+  }
+
+  .landing-voice-shell {
+    margin-top: 28px;
+    margin-bottom: 12px;
+    padding: 22px 16px 18px;
+    border-radius: 24px;
+  }
+
+  .landing-voice-shell + .landing-promo-code {
+    margin-top: 56px;
+  }
+
+  .landing-voice-shell__title {
+    max-width: none;
+    font-size: 22px !important;
+  }
+
+  .landing-voice-nav {
+    display: none;
+  }
+
+  .landing-promo-code__copy {
+    padding: 26px 22px;
+  }
+
+  .landing-promo-code__subtitle {
+    font-size: 17px !important;
+  }
+}
+
+/* Выбор продукта: иконка + подпись, активный — круглый ореол */
+.landing-modes {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2px 20px;
+  width: 100%;
+  margin: 0 0 12px;
+  padding: 0 8px;
+}
+
+.landing-modes__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  min-width: 64px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  appearance: none;
+  text-decoration: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.landing-modes__item:focus,
+.landing-modes__item:focus-visible {
+  outline: none;
+  text-decoration: none;
+}
+
+.landing-modes__halo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.landing-modes__ai {
+  position: absolute;
+  top: -2px;
+  right: -10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 16px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--tutu-promo);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  box-shadow: 0 1px 3px rgba(13, 11, 104, 0.28);
+  pointer-events: none;
+}
+
+.landing-modes__item--active .landing-modes__halo {
+  background: rgba(26, 16, 90, 0.72);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.landing-modes__label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.15;
+  text-align: center;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.96);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 1px;
+}
+
+.landing-modes__item--active .landing-modes__label {
+  border-bottom-color: transparent;
+}
+
+.landing-modes__item:not(.landing-modes__item--active) .landing-modes__label {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.landing-search-wrap {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+
+.landing-hero--city-open .landing-search-wrap {
+  z-index: 30;
+}
+
+.landing-city-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  min-width: min(360px, 86vw);
+  max-height: min(420px, 55vh);
+  overflow-y: auto;
+  padding: 8px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(13, 11, 104, 0.22);
+  z-index: 40;
+}
+
+.landing-city-dropdown__item {
+  appearance: none;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--tutu-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.landing-city-dropdown__item:hover {
+  background: #f3f1f8;
+}
+
+.landing-city-dropdown__pin {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: #eceaf3;
+  color: #3d3a5c;
+}
+
+.landing-city-dropdown__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.landing-city-dropdown__name {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.landing-city-dropdown__country {
+  font-size: 13px;
+  font-weight: 500;
+  color: #8a879c;
+  line-height: 1.25;
+}
+
+.landing-city-dropdown__code {
+  font-size: 13px;
+  font-weight: 600;
+  color: #8a879c;
+  letter-spacing: 0.04em;
+}
+
+/* Рейтинг автобусов — сразу под поиском в режиме «Автобусы» */
+.landing-bus-carriers {
+  position: relative;
+  z-index: 2;
+  margin-top: 28px;
+  margin-bottom: 12px;
+  padding: 22px 20px 18px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.landing-bus-carriers__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.landing-bus-carriers__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .landing-bus-carriers {
+    margin-top: 20px;
+    padding: 16px 12px 12px;
+    border-radius: 20px;
+  }
+}
+
+/* Смешанный маршрут под формой поиска */
+.landing-mixed {
+  position: relative;
+  z-index: 1;
+  margin-top: 28px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.landing-mixed__eyebrow {
+  margin: 0 0 8px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.landing-mixed__title {
+  margin: 0 0 20px;
+  color: #fff;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.landing-mixed__segments {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.landing-mixed__card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px;
+  border-radius: 20px;
+  background: #fff;
+  color: #181c2d;
+  box-shadow: var(--tutu-shadow);
+}
+
+.landing-mixed__mode {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--tutu-brand-text);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.landing-mixed__route {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.landing-mixed__meta {
+  margin: 0 0 4px;
+  color: #555a7a;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.landing-mixed__card > button {
+  margin-top: auto;
+}
+
+.landing-mixed__plus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  align-self: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.landing-mixed__total {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 16px 24px;
+  align-items: center;
+  margin-top: 16px;
+  margin-bottom: 12px;
+  padding: 22px;
+  border-radius: 20px;
+  background: #fff;
+  color: #181c2d;
+  box-shadow: var(--tutu-shadow);
+}
+
+.landing-mixed__total-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.landing-mixed__total-label {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.landing-mixed__total-duration {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #555a7a;
+}
+
+.landing-mixed__total-price {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: #181c2d;
+}
+
+@media (max-width: 900px) {
+  .landing-mixed__segments {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-mixed__plus {
+    width: 36px;
+    height: 36px;
+    margin: -4px auto;
+  }
+
+  .landing-mixed__total {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .landing-mixed__total-price {
+    font-size: 24px;
+  }
+
+  .landing-mixed__total > button {
+    width: 100%;
+  }
+}
+
+.landing-search {
+  display: grid;
+  grid-template-columns:
+    minmax(140px, 1.2fr)
+    48px
+    minmax(140px, 1.2fr)
+    minmax(120px, 0.9fr)
+    minmax(120px, 0.9fr)
+    auto;
+  align-items: stretch;
+  background: var(--tutu-white);
+  border-radius: 20px;
+  box-shadow: var(--tutu-shadow);
+  overflow: visible;
+  min-height: 56px;
+}
+
+.landing-search__cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+  min-width: 0;
+  padding: 10px 16px;
+  border-right: 1px solid rgba(24, 28, 45, 0.08);
+  cursor: text;
+}
+
+.landing-search__cell--open {
+  z-index: 6;
+}
+
+.landing-search__cell--passengers {
+  cursor: default;
+}
+
+.landing-search__cell--date {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  appearance: none;
+}
+
+.landing-search__cell--date.landing-search__cell--empty .landing-search__label {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  font-weight: 500;
+  color: #a0a4b8;
+}
+
+.landing-search__label,
+.landing-search__hint {
+  color: var(--tutu-text-secondary, #7d82a0);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  pointer-events: none;
+}
+
+.landing-search__input {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: #181c2d;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  padding: 0;
+  min-height: 22px;
+}
+
+/* пустое поле — крупный плейсхолдер как на фото */
+.landing-search__cell:has(.landing-search__input:placeholder-shown:not(:focus)) .landing-search__label {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  font-weight: 500;
+  color: #a0a4b8;
+}
+
+.landing-search__cell:has(.landing-search__input:placeholder-shown:not(:focus)) .landing-search__input {
+  color: transparent;
+}
+
+.landing-search__value {
+  color: #181c2d;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.landing-search__swap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  border: 0;
+  border-right: 1px solid rgba(24, 28, 45, 0.08);
+  background: transparent;
+  color: var(--tutu-brand);
+  cursor: pointer;
+  padding: 0;
+}
+
+.landing-search__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  padding: 0 22px;
+  border: 0;
+  background: var(--tutu-promo);
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+.landing-search__submit:hover {
+  filter: brightness(1.05);
+}
+
+.landing-search__suggest {
+  display: grid;
+  grid-template-columns:
+    minmax(140px, 1.2fr)
+    48px
+    minmax(140px, 1.2fr)
+    minmax(120px, 0.9fr)
+    minmax(120px, 0.9fr)
+    auto;
+  gap: 6px 0;
+  margin-top: 8px;
+  padding: 0 4px;
+}
+
+.landing-search__suggest-col {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+  padding-right: 8px;
+}
+
+.landing-search__suggest-gap,
+.landing-search__suggest-col--empty {
+  min-width: 0;
+}
+
+.landing-search__chip {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  color: #343954;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(13, 11, 104, 0.08);
+}
+
+.landing-search__chip:hover {
+  border-color: rgba(255, 255, 255, 0.9);
+  background: #fff;
+}
+
+@media (max-width: 900px) {
+  .landing-search {
+    grid-template-columns: 1fr 48px 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  .landing-search__cell:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .landing-search__swap {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .landing-search__cell:nth-child(3) {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .landing-search__cell:nth-child(4),
+  .landing-search__cell--passengers {
+    border-right: 0;
+    border-top: 1px solid rgba(24, 28, 45, 0.08);
+  }
+
+  .landing-search__cell:nth-child(4) {
+    grid-column: 1 / 3;
+    grid-row: 2;
+  }
+
+  .landing-search__cell--passengers {
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  .landing-search__submit {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    min-height: 52px;
+  }
+
+  .landing-search__suggest {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .landing-search__suggest-gap,
+  .landing-search__suggest-col--empty {
+    display: none;
+  }
+
+  .landing-search__suggest-col {
+    padding-right: 0;
+  }
+}
+
+.landing-section-soft {
+  background: var(--tutu-brand-soft);
+}
+
+.landing-section-page {
+  background: var(--tutu-page);
+}
+
+.landing-section-deep {
+  background: var(--tutu-brand-deep);
+}
+
+.landing-promo-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: var(--tutu-promo);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Language switcher — pill ҚАЗ | RU (как на india-landing) */
+.lang-switch {
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  isolation: isolate;
+}
+
+.lang-switch__thumb {
+  position: absolute;
+  inset: 3px auto 3px 3px;
+  width: calc(50% - 3px);
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(13, 11, 104, 0.16);
+  transition: transform 0.2s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.lang-switch__btn {
+  position: relative;
+  z-index: 1;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0 !important;
+  margin: 0;
+  cursor: pointer;
+  min-width: 56px;
+  height: 30px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: #ffffff !important;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  transition: color 0.18s ease;
+}
+
+.lang-switch__btn:hover,
+.lang-switch__btn:active,
+.lang-switch__btn:focus {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  outline: none;
+}
+
+.lang-switch__btn.is-active {
+  color: #252a40 !important;
+}
+
+.lang-switch__btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}

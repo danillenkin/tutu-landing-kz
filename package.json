@@ -1,0 +1,43 @@
+{
+  "name": "kite-ai-prototype",
+  "version": "1.0.0",
+  "description": "Бойлерплейт для прототипирования с Kite Design System и AI",
+  "private": true,
+  "scripts": {
+    "init": "bash scripts/init.sh",
+    "init:dir": "bash scripts/init.sh --dir",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "deploy-directives": "kite-ai-deploy --env $(cat .kite-env 2>/dev/null || echo cursor) --yes . && node scripts/sync-kite-deps.js",
+    "update-directives": "kite-ai-deploy --env $(cat .kite-env 2>/dev/null || echo cursor) --update --yes . && node scripts/sync-kite-deps.js",
+    "test:deploy": "bash scripts/init.sh --dir /tmp/kite-test-$(date +%s) --env claude",
+    "postinstall": "node scripts/extract-tutu-styles.js || true",
+    "extract-styles": "node scripts/extract-tutu-styles.js"
+  },
+  "devDependencies": {
+    "@types/node": "20.17.6",
+    "@types/react": "19.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "author": {
+    "name": "Tutu Design System Team",
+    "email": "shalman@tutu.ru"
+  },
+  "dependencies": {
+    "@tutu-react/bdui": "^0.37.1",
+    "@tutu-react/header": "^2.14.0",
+    "@tutu-react/kite-footer": "^2.12.0",
+    "@tutu/kite": "^5.6.2",
+    "@tutu/kite-assets": "^0.11.2",
+    "@tutu/mother-of-tokens": "^2.3.0",
+    "@tutu/order-icons": "^1.9.15",
+    "next": "^15.1.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "typescript": "^5.8.3"
+  }
+}
