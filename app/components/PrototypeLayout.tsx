@@ -85,8 +85,8 @@ export function PrototypeLayout({
           <Footer
             page={page}
             baseDomain={baseDomain}
-            product={product}
-            breadcrumbs={breadcrumbs}
+            product={product === 'aeroexpress' ? undefined : product}
+            breadcrumbs={breadcrumbs as never}
             isCompactView={isCompactFooter}
           />
         </LangProvider>
