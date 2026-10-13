@@ -56,13 +56,17 @@ ${classNames.map(name => `  '${name}': '${name}',`).join('\n')}
 }
 
 const isGithubPages = process.env.GITHUB_PAGES === 'true';
+const pagesBase = '/tutu-landing-kz';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   output: isGithubPages ? 'export' : undefined,
-  basePath: isGithubPages ? '/tutu-landing-kz' : undefined,
-  assetPrefix: isGithubPages ? '/tutu-landing-kz/' : undefined,
+  basePath: isGithubPages ? pagesBase : undefined,
+  assetPrefix: isGithubPages ? `${pagesBase}/` : undefined,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isGithubPages ? pagesBase : '',
+  },
   images: {
     unoptimized: true,
   },

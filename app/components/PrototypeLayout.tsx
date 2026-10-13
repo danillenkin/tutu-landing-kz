@@ -7,6 +7,7 @@ import { AuthProvider } from '../mocks/authentication-sdk-react';
 import { UserwayProvider } from '../mocks/userway-react';
 import { LangProvider, useLang } from '../i18n/LangContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { asset } from '../lib/paths';
 
 export interface PrototypeLayoutProps {
   page: string;
@@ -49,7 +50,11 @@ function HeaderBar({
           <a href="#top" className="landing-header__brand" aria-label="tutu">
             <img
               className="landing-header__logo"
-              src={isDark ? '/assets/logos/tutu-on-dark.svg' : '/assets/logos/tutu-on-light.svg'}
+              src={
+                isDark
+                  ? asset('/assets/logos/tutu-on-dark.svg')
+                  : asset('/assets/logos/tutu-on-light.svg')
+              }
               alt="tutu"
               width={140}
               height={38}

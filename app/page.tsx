@@ -12,6 +12,7 @@ import type { MIconName } from '@tutu/order-icons';
 import { PrototypeLayout } from './components/PrototypeLayout';
 import { useLang } from './i18n/LangContext';
 import type { LangCode } from './i18n/messages';
+import { asset } from './lib/paths';
 
 const MONTHS_SHORT: Record<LangCode, string[]> = {
   ru: ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'],
@@ -63,7 +64,7 @@ const HOTELS: HotelCard[] = [
     id: 'alfa',
     name: 'Альфа Измайлово',
     city: 'Москва',
-    src: '/assets/hotels/alfa.jpg',
+    src: asset('/assets/hotels/alfa.jpg'),
     rating: '8,8',
     reviews: 1332,
     priceRub: 4506,
@@ -75,7 +76,7 @@ const HOTELS: HotelCard[] = [
     id: 'sadovaya',
     name: 'Номера на Невском 111',
     city: 'Санкт-Петербург',
-    src: '/assets/hotels/sadovaya.jpg',
+    src: asset('/assets/hotels/sadovaya.jpg'),
     rating: '8,7',
     reviews: 1367,
     priceRub: 2100,
@@ -87,7 +88,7 @@ const HOTELS: HotelCard[] = [
     id: 'grace',
     name: 'Грейс Горизонт',
     city: 'Сочи',
-    src: '/assets/hotels/grace.jpg',
+    src: asset('/assets/hotels/grace.jpg'),
     rating: '9,4',
     reviews: 304,
     priceRub: 2200,
@@ -99,7 +100,7 @@ const HOTELS: HotelCard[] = [
     id: 'venera',
     name: 'Venera',
     city: 'Казань',
-    src: '/assets/hotels/venera.jpg',
+    src: asset('/assets/hotels/venera.jpg'),
     rating: '8,9',
     reviews: 1359,
     priceRub: 6120,
@@ -111,7 +112,7 @@ const HOTELS: HotelCard[] = [
     id: 'nnv',
     name: 'Marins Нижний Новгород',
     city: 'Нижний Новгород',
-    src: '/assets/hotels/nnv.jpg',
+    src: asset('/assets/hotels/nnv.jpg'),
     rating: '8,1',
     reviews: 1309,
     priceRub: 5432,
@@ -123,7 +124,7 @@ const HOTELS: HotelCard[] = [
     id: 'nsk',
     name: 'Marins Новосибирск',
     city: 'Новосибирск',
-    src: '/assets/hotels/nsk.jpg',
+    src: asset('/assets/hotels/nsk.jpg'),
     rating: '8,7',
     reviews: 779,
     priceRub: 3553,
@@ -135,7 +136,7 @@ const HOTELS: HotelCard[] = [
     id: 'krr',
     name: 'Golden Tulip Krasnodar',
     city: 'Краснодар',
-    src: '/assets/hotels/krr.jpg',
+    src: asset('/assets/hotels/krr.jpg'),
     rating: '9,1',
     reviews: 2528,
     priceRub: 18360,
@@ -147,7 +148,7 @@ const HOTELS: HotelCard[] = [
     id: 'kgd',
     name: 'Гостиница Калининград',
     city: 'Калининград',
-    src: '/assets/hotels/kgd.jpg',
+    src: asset('/assets/hotels/kgd.jpg'),
     rating: '8,5',
     reviews: 363,
     priceRub: 6577,
@@ -159,7 +160,7 @@ const HOTELS: HotelCard[] = [
     id: 'vvo',
     name: 'Приморье',
     city: 'Владивосток',
-    src: '/assets/hotels/vvo.jpg',
+    src: asset('/assets/hotels/vvo.jpg'),
     rating: '8,1',
     reviews: 416,
     priceRub: 2342,
@@ -417,7 +418,7 @@ const POPULAR_ROUTES_KZ_RU: PopularRoute[] = [
     id: 'ala-mow',
     from: 'Алматы',
     to: 'Москва',
-    src: '/assets/destinations/cities/moscow.jpg',
+    src: asset('/assets/destinations/cities/moscow.jpg'),
     priceRub: 18500,
     oldPriceRub: 21765,
     priceKzt: 98000,
@@ -427,7 +428,7 @@ const POPULAR_ROUTES_KZ_RU: PopularRoute[] = [
     id: 'nqz-led',
     from: 'Астана',
     to: 'Санкт-Петербург',
-    src: '/assets/destinations/cities/spb.jpg',
+    src: asset('/assets/destinations/cities/spb.jpg'),
     priceRub: 16200,
     oldPriceRub: 19060,
     priceKzt: 86000,
@@ -437,7 +438,7 @@ const POPULAR_ROUTES_KZ_RU: PopularRoute[] = [
     id: 'ala-aer',
     from: 'Алматы',
     to: 'Сочи',
-    src: '/assets/destinations/cities/sochi.jpg',
+    src: asset('/assets/destinations/cities/sochi.jpg'),
     priceRub: 21400,
     oldPriceRub: 26750,
     priceKzt: 113000,
@@ -447,7 +448,7 @@ const POPULAR_ROUTES_KZ_RU: PopularRoute[] = [
     id: 'cit-kzn',
     from: 'Шымкент',
     to: 'Казань',
-    src: '/assets/destinations/cities/kazan.jpg',
+    src: asset('/assets/destinations/cities/kazan.jpg'),
     priceRub: 14800,
     oldPriceRub: 17410,
     priceKzt: 78000,
@@ -457,7 +458,7 @@ const POPULAR_ROUTES_KZ_RU: PopularRoute[] = [
     id: 'nqz-svx',
     from: 'Астана',
     to: 'Екатеринбург',
-    src: '/assets/destinations/cities/ekb.jpg',
+    src: asset('/assets/destinations/cities/ekb.jpg'),
     priceRub: 12900,
     oldPriceRub: 15175,
     priceKzt: 68000,
@@ -467,7 +468,7 @@ const POPULAR_ROUTES_KZ_RU: PopularRoute[] = [
     id: 'ala-led',
     from: 'Алматы',
     to: 'Санкт-Петербург',
-    src: '/assets/destinations/cities/spb.jpg',
+    src: asset('/assets/destinations/cities/spb.jpg'),
     priceRub: 19800,
     oldPriceRub: 24750,
     priceKzt: 105000,
@@ -480,7 +481,7 @@ const POPULAR_ROUTES_RU_RU: PopularRoute[] = [
     id: 'csy-mow',
     from: 'Чебоксары',
     to: 'Москва',
-    src: '/assets/destinations/cities/moscow.jpg',
+    src: asset('/assets/destinations/cities/moscow.jpg'),
     priceRub: 4830,
     oldPriceRub: 5682,
     priceKzt: 5496,
@@ -490,7 +491,7 @@ const POPULAR_ROUTES_RU_RU: PopularRoute[] = [
     id: 'rov-mow',
     from: 'Ростов-на-Дону',
     to: 'Москва',
-    src: '/assets/destinations/cities/moscow.jpg',
+    src: asset('/assets/destinations/cities/moscow.jpg'),
     priceRub: 2709,
     oldPriceRub: 3187,
     priceKzt: 3083,
@@ -500,7 +501,7 @@ const POPULAR_ROUTES_RU_RU: PopularRoute[] = [
     id: 'mow-uly',
     from: 'Москва',
     to: 'Ульяновск',
-    src: '/assets/destinations/cities/ulyanovsk.jpg',
+    src: asset('/assets/destinations/cities/ulyanovsk.jpg'),
     priceRub: 3684,
     oldPriceRub: 4334,
     priceKzt: 4192,
@@ -510,7 +511,7 @@ const POPULAR_ROUTES_RU_RU: PopularRoute[] = [
     id: 'ufa-mow',
     from: 'Уфа',
     to: 'Москва',
-    src: '/assets/destinations/cities/ekb.jpg',
+    src: asset('/assets/destinations/cities/ekb.jpg'),
     priceRub: 3443,
     oldPriceRub: 4051,
     priceKzt: 3918,
@@ -520,7 +521,7 @@ const POPULAR_ROUTES_RU_RU: PopularRoute[] = [
     id: 'kzn-led',
     from: 'Казань',
     to: 'Санкт-Петербург',
-    src: '/assets/destinations/cities/spb.jpg',
+    src: asset('/assets/destinations/cities/spb.jpg'),
     priceRub: 4120,
     oldPriceRub: 4847,
     priceKzt: 4690,
@@ -530,7 +531,7 @@ const POPULAR_ROUTES_RU_RU: PopularRoute[] = [
     id: 'svx-aer',
     from: 'Екатеринбург',
     to: 'Сочи',
-    src: '/assets/destinations/cities/sochi.jpg',
+    src: asset('/assets/destinations/cities/sochi.jpg'),
     priceRub: 5890,
     oldPriceRub: 7363,
     priceKzt: 6700,
@@ -862,7 +863,7 @@ function LandingContent() {
         <div className="landing-hero__stage">
           <div className="landing-hero__visual" aria-hidden>
             <div className="landing-hero__oval">
-              <img src="/assets/hero.jpg" alt="" />
+              <img src={asset("/assets/hero.jpg")} alt="" />
             </div>
           </div>
           <div className="landing-hero__deal-slot">
@@ -1647,7 +1648,7 @@ function LandingContent() {
             </div>
             <div className="landing-promo-code__visual" aria-hidden>
               <img
-                src="/assets/hero-photo-promo.jpg"
+                src={asset("/assets/hero-photo-promo.jpg")}
                 alt=""
                 width={640}
                 height={480}

@@ -124,7 +124,7 @@ footer > div > img {
   content: '';
   position: absolute;
   inset: -32%;
-  background: url('/assets/hero.jpg') 36% 36% / cover no-repeat;
+  background: var(--hero-image, url('/assets/hero.jpg')) 36% 36% / cover no-repeat;
   transform: rotate(15deg) scale(1.08);
 }
 
