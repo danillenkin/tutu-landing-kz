@@ -1,0 +1,276 @@
+/* Auto-generated: CSS from @tutu-react packages */
+/* Do not edit manually - regenerate with: node scripts/extract-tutu-styles.js */
+
+/* === @tutu-react/kite-footer === */
+@charset "UTF-8";
+/**
+* AUTOMATICALLY GENERATED FILE
+*
+* Do not change anything manually!
+*/
+/**
+	Позволяет сделать текст переносимым на след строку и добавляет многоточие,
+	если текст вылезает за пределы блока
+ */
+.footer {
+  background-color: var(--kite-background-static-brand-deep);
+  padding: 32px 0 56px;
+}
+@media (min-width: 1200px) {
+  .footer {
+    padding: 32px 0 80px;
+  }
+}
+.footer.redesign {
+  background-color: #986ff7;
+}
+
+.flexCol8 {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.compactView {
+  padding-right: var(--kite-main-layout-margin-horizontal-sm);
+  padding-left: var(--kite-main-layout-margin-horizontal-sm);
+}
+
+@media (max-width: 1399.98px) {
+  .fullRow {
+    margin-right: 100%;
+    margin-bottom: 24px;
+  }
+}
+
+.footerCompact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+}
+
+.qr {
+  border-radius: 16px;
+}
+
+.apps {
+  display: flex;
+  gap: 16px;
+}
+
+/* === @tutu-react/header === */
+@charset "UTF-8";
+/**
+* AUTOMATICALLY GENERATED FILE
+*
+* Do not change anything manually!
+*/
+/**
+* AUTOMATICALLY GENERATED FILE
+*
+* Do not change anything manually!
+*/
+/**
+	Позволяет сделать текст переносимым на след строку и добавляет многоточие,
+	если текст вылезает за пределы блока
+ */
+header.header {
+  background-color: rgb(36, 33, 94);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo svg {
+  padding-bottom: 0;
+}
+
+.second-line {
+  min-height: 52px;
+  display: flex;
+  justify-content: end;
+}
+
+.mobile-buttons {
+  justify-content: end;
+  align-items: center;
+  min-height: 40px;
+  justify-self: end;
+}
+
+@media (min-width: 992px) {
+  .profile {
+    position: relative;
+  }
+}
+
+.separator {
+  height: 20px;
+}
+
+.link {
+  text-wrap: nowrap;
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+.link:hover {
+  text-decoration: none;
+}
+.link:hover .linkLabel {
+  text-decoration: underline;
+}
+
+.link {
+  margin-left: 4px;
+}
+
+.root {
+  text-decoration: none;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.link_unauthorized {
+  visibility: hidden;
+}
+@media (min-width: 345px) {
+  .link_unauthorized {
+    visibility: visible;
+  }
+}
+
+@charset "UTF-8";
+/**
+* AUTOMATICALLY GENERATED FILE
+*
+* Do not change anything manually!
+*/
+/**
+	Позволяет сделать текст переносимым на след строку и добавляет многоточие,
+	если текст вылезает за пределы блока
+ */
+header.headerDark {
+  background-color: var(--kite-background-static-brand-deep);
+}
+
+header.headerWhite {
+  background-color: var(--kite-background-static-light);
+}
+
+header.fixed {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+}
+
+@charset "UTF-8";
+/**
+* AUTOMATICALLY GENERATED FILE
+*
+* Do not change anything manually!
+*/
+/**
+	Позволяет сделать текст переносимым на след строку и добавляет многоточие,
+	если текст вылезает за пределы блока
+ */
+.a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.menu {
+  width: 100%;
+  transition: 0.5s;
+  box-sizing: border-box;
+  position: absolute;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  max-height: 75vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+@media (min-width: 992px) {
+  .menu {
+    -webkit-overflow-scrolling: auto;
+    width: 344px;
+    bottom: unset;
+    max-height: unset;
+    overflow: unset;
+  }
+}
+
+.exit {
+  cursor: pointer;
+}
+
+.overlay {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--kite-modal-scrim);
+  z-index: 99;
+}
+.overlay__container {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.global__overlay {
+  height: 100vh;
+  overflow: hidden;
+}
+@media (min-width: 992px) {
+  .global__overlay {
+    height: auto;
+    overflow: auto;
+  }
+}
+
+.menuButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@charset "UTF-8";
+/**
+* AUTOMATICALLY GENERATED FILE
+*
+* Do not change anything manually!
+*/
+/**
+	Позволяет сделать текст переносимым на след строку и добавляет многоточие,
+	если текст вылезает за пределы блока
+ */
+.bonusesText {
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  word-break: break-word;
+  max-width: 100%;
+  -webkit-line-clamp: 1;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
